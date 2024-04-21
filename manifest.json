@@ -1,0 +1,37 @@
+{
+  "name": "__MSG_APP_NAME__",
+  "version": "1.0.0",
+  "description": "__MSG_APP_DESCRIPTION__",
+  "default_locale": "ja",
+  "icons": {
+    "128": "icons/icon-128.png",
+    "64": "icons/icon-64.png",
+    "48": "icons/icon-48.png",
+    "16": "icons/icon-16.png"
+  },
+  "action": {
+    "default_title": "Options",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": [ 
+      "*://*.suki-kira.com/*"
+    ],
+    "all_frames": true,
+    "run_at": "document_idle",
+    "css": [],
+    "js": ["content_script.js"]
+  }],
+  "web_accessible_resources": [{
+      "matches": ["<all_urls>"],
+      "resources": [
+          "*.js"
+      ]
+  }],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [],
+  "manifest_version": 3
+}

@@ -1,0 +1,140 @@
+{
+   "APP_NAME": {
+      "message": "SK helper"
+   },
+   "APP_DESCRIPTION": {
+      "message": "Collect plenty of comments from anonymous social forums efficiently and save them as a local text file. This is able to support the work of Legal Experts."
+   },
+   "APP_VERSION": {
+      "message": "1.0.0"
+   },
+   "APP_COPYRIGHT": {
+      "message": "wxyz"
+   },
+   "APP_CONTACT_TWITTER": {
+      "message": "X (Twitter)"
+   },
+   "APP_CONTACT_TWITTER_URL": {
+      "message": "https://twitter.com/_wxyzdev"
+   },
+   "APP_CONTACT_GITHUB": {
+      "message": "Github"
+   },
+   "APP_CONTACT_GITHUB_URL": {
+      "message": "https://github.com/wxyzdev"
+   },
+   "APP_CONTACT_REPORT_URL": {
+      "message": "https://github.com/wxyzdev/skhelper"
+   },
+   "APP_LICENSE": {
+      "message": "Apache-2.0 license"
+   },
+   "APP_LICENSE_URL": {
+      "message": "/LICENSE.txt"
+   },
+   "POPUPMENU_RESET": {
+      "message": "Reset configs"
+   },
+   "POPUPMENU_CLEAR": {
+      "message": "Clear entire data"
+   },
+   "POPUPMENU_REPORT": {
+      "message": "Report bug"
+   },
+   "POPUPMENU_ABOUT": {
+      "message": "About"
+   },
+   "CATEGORY_FUNCTION": {
+      "message": "Function"
+   },
+   "CATEGORY_UI": {
+      "message": "User Interface"
+   },
+   "CATEGORY_AUTOMATION": {
+      "message": "Automation"
+   },
+   "CATEGORY_TUNING": {
+      "message": "Tuning"
+   },
+   "CATEGORY_LOGGING": {
+      "message": "Logging"
+   },
+   "TITLE_FUNCTION_DISABLE_WHOLE": {
+      "message": "Disable whole of functions"
+   },
+   "TITLE_UI_ADD_1000": {
+      "message": "Add [Save 1000] button"
+   },
+   "TITLE_UI_ADD_10000": {
+      "message": "Add [Save 10000] button"
+   },
+   "TITLE_UI_ADD_1DAY": {
+      "message": "Add [Save 1 day] button"
+   },
+   "TITLE_UI_ADD_7DAY": {
+      "message": "Add [Save 7 days] button"
+   },
+   "TITLE_UI_ADD_ALL": {
+      "message": "Add [Save all the rest] button"
+   },
+   "TITLE_UI_ADD_NEXT20": {
+      "message": "Add [Pre-load 20] button"
+   },
+   "TITLE_UI_ADD_NEXT100": {
+      "message": "Add [Pre-load 100] button"
+   },
+   "TITLE_AUTOMATION_ENABLE_AUTOFEEDBACK": {
+      "message": "Enable Auto-Feedback"
+   },
+   "TITLE_AUTOMATION_FEEDBACK_DISLIKE": {
+      "message": "Auto-Feedback with Dislike"
+   },
+   "TITLE_AUTOMATION_GOTO_LAST": {
+      "message": "Go to the last fetched page automatically"
+   },
+   "TITLE_TUNING_RANDOM_INTERVAL": {
+      "message": "Make the base interval (5 sec) random (2-6 sec)"
+   },
+   "TITLE_TUNING_INCREASE_RANDOM": {
+      "message": "Increase the interval by random (<10 sec)"
+   },
+   "TITLE_LOGGING_ENABLE_LOGGING": {
+      "message": "Enable logging"
+   },
+   "TITLE_LOGGING_ENABLE_DEBUGLOGGING": {
+      "message": "Enable debug logging"
+   },
+   "LABEL_SAVE_1000": {
+      "message": "Save 1000"
+   },
+   "LABEL_SAVE_10000": {
+      "message": "Save 10000"
+   },
+   "LABEL_SAVE_1DAY": {
+      "message": "Save 1 day"
+   },
+   "LABEL_SAVE_7DAY": {
+      "message": "Save 7 days"
+   },
+   "LABEL_SAVE_ALL": {
+      "message": "Save all the rest"
+   },
+   "LABEL_PRELOAD_NEXT20": {
+      "message": "Pre-load 20"
+   },
+   "LABEL_PRELOAD_NEXT100": {
+      "message": "Pre-load 100"
+   },
+   "LABEL_NEXT_PRELOAD": {
+      "message": "Next to Pre-load"
+   },
+   "LABEL_COMMENT_NOTE": {
+      "message": "(Just display the preloaded comments)"
+   },
+   "DIALOG_TASK_FINISHED": {
+      "message": "The task has been completed."
+   },
+   "DIALOG_GOTO_LAST": {
+      "message": "Now go to the last fetched page."
+   }
+}

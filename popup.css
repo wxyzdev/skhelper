@@ -1,0 +1,939 @@
+@media (prefers-color-scheme: dark) {
+  body {
+    width: 400px;
+    padding: 0;
+    margin: 0 auto;
+    background: #252525;
+  }
+  ::-webkit-scrollbar {
+    /* display: none; */
+    background: #1b1b1b;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #8d8d8d;
+    border-radius: 20px;
+  }
+
+  /* Other */
+  hr.menu-hr {
+    height: 0;
+    border: 0;
+    border-top: 1px solid #636363;
+    padding: 0;
+    margin: 4px 2px 4px 2px;
+  }
+
+  /* Overlay Card */
+  div.overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  div.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  div.overlay div.overlay-card {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    position: fixed;
+    top: 50%;               /* Upper left position */
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    margin-left: -200px;    /* Half of width */
+    margin-top: -100px;     /* Half of height */
+    padding: 10px;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    background: #ffffff;
+  }
+  div.overlay div.overlay-card.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: auto;
+  }
+  div.overlay div.overlay-card div.overlay-card-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-title {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-name {
+    display: flex;
+    justify-content: right;
+    width: 40%;
+    padding-right: 10px;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-name span {
+    font-size: 16px;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-value {
+    display: flex;
+    justify-content: left;
+    width: 60%;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-value span {
+    font-size: 12px;
+  }
+  div.overlay div.overlay-card-close {
+    position: absolute;
+    display: block;
+    content: "";
+    top: -54px;    /* = height + margin-top + margin-bottom */
+    left: 100%;
+    width: 34px;
+    height: 34px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #272727da;
+  }
+  div.overlay:hover div.overlay-card:not(:hover) div.overlay-card-close {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-card-close:hover {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 3px;
+    left: 5px;
+    margin: 0px;
+    width: 24px;
+    height: 24px;
+    user-select: none;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::before, 
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: #b8b8b8;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::before {
+    transform: translate(-50%, -40%) rotate(45deg);
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::after {
+    transform: translate(-50%, -40%) rotate(135deg);
+  }
+  div.overlay div.overlay-minicard {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    background: #ffffff;
+  }
+  div.overlay div.overlay-minicard.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: auto;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-title {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-name {
+    display: flex;
+    justify-content: right;
+    width: 40%;
+    padding-right: 10px;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-name span {
+    font-size: 14px;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-value {
+    display: flex;
+    justify-content: left;
+    width: 60%;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-value span {
+    font-size: 12px;
+  }
+  div.overlay div.overlay-minicard-close {
+    position: absolute;
+    display: block;
+    content: "";
+    position: absolute;
+    top: -28px;    /* = height + margin-top + margin-bottom */
+    left: 100%;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #272727da;
+  }
+  div.overlay:hover div.overlay-minicard:not(:hover) div.overlay-minicard-close {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-minicard-close:hover {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    width: 20px;
+    height: 20px;
+    user-select: none;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::before, 
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 16px;
+    background-color: #b8b8b8;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::after {
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
+
+  /* Header */
+  div.header-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 15px 0px 10px;
+  }
+  div.header-container .right-aligned{
+    margin-left: auto;
+  }
+  div.header-container div.header-logo {
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+    user-select: none;
+    border: 0 none;
+  }
+  div.header-container div.header-title {
+    position: relative;
+    display: block;
+    user-select: none;
+    font-size: 16px;
+    font-weight: bold;
+    color:#E8EAED;
+  }
+  div.header-container div.header-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Icon Button */
+  div.header-icon {
+    position: relative;
+    display: block;
+    content: "";
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  div.header-icon:hover {
+    background-color:#3d5455da;
+  }
+  div.header-icon button.icon-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 28px;
+    width: 28px;
+    border: 0 none;
+    cursor: pointer;
+    user-select: none;
+    background-size: 18px 18px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  div.header-icon button.icon-hamburger {
+    background-image: url('./icons/hamburger_dark.png');
+  }
+
+  /* Popup Menu under Icon Button */
+  div.header-icon-popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 8px 0px 8px 0px;
+    top: 100%;
+    right: 100%;
+    transform: translate(32px, -16px);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    background: #252525;
+    border: 1px solid #3C4043;
+    border-radius: 8px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.32);
+    transition: all 100ms ease-in-out;
+  }
+  div.header-icon-popup.active{
+    transform: translate(32px, -8px);
+    opacity: 1;
+    visibility: visible;
+  }
+  div.header-icon-popup div.header-icon-popup-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    font-size: 12px;
+    color:#E8EAED;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 26px;                                     /* Overlay height */
+    transition: background-color 100ms ease-in-out 0ms;    /* Overlay hovering behavior */
+  }
+  div.header-icon-popup div.header-icon-popup-item:hover {
+    background-color: #585858;                           /* Overlay color */
+  }
+  div.header-icon-popup div.header-icon-popup-item div.header-icon-popup-inlineicon {
+    height: 16px;
+    width: 16px;
+    border: 0 none;
+    user-select: none;
+    background-size: 14px 14px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  div.header-icon-popup div.header-icon-popup-item div.icon-open {
+    background-image: url('./icons/open_dark.png');
+  }
+
+  /* Option */
+  div.option-container {
+    position: relative;
+    padding: 0px 0px 3px 0px;
+  }
+  div.option {
+    display: block;
+    visibility: visible;
+  }
+  div.option div.option-title {
+    color:#E8EAED;
+    font-size: 14px;
+    padding: 0px 10px 2px 10px;
+    user-select: none;
+  }
+  div.option div.option-item-container {
+    position: relative;
+  }
+  div.option div.option-item-container:hover {
+    background-color: #585858;
+  }
+  div.option div.option-item-container button.item-switch {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 0px;
+    cursor: pointer;
+    border: 0px solid;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+  div.option-item {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2px 10px 2px 10px;
+  }
+  div.option-item div.item-title{
+    user-select: none;
+    font-size: 12px;
+    color:#E8EAED;
+    padding: 1px 10px 1px 10px;
+  }
+  div.option-item .right-aligned {
+    margin-left: auto;
+  }
+  div.option-item .unclickable {
+    pointer-events: none;
+  }
+
+  /* Toggle Switch Option */
+  div.toggleswitch {
+    position: relative;                                    /* MUST */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    width: 30px;                                           /* Toggle+Lable overall width (I) */
+    height: 16px;                                          /* Toggle+Lable overall height (II) */
+    margin: 2px 8px 2px 8px;
+  }
+  div.toggleswitch input.switch {
+    display: none;
+  }
+  div.toggleswitch label.toggle {
+    position: relative;                                    /* MUST */
+    content: "";
+    cursor: pointer;
+    user-select: none;
+    width: 30px;                                           /* Toggle+Lable overall width (I) */
+    height: 16px;                                          /* Toggle+Lable overall height (II) */
+  }
+  div.toggleswitch label.toggle:before,
+  div.toggleswitch label.toggle:after {
+    position: absolute;                                    /* MUST */
+    content: "";                                           /* MUST (empty) */
+    top: 50%;                                              /* Toggle overall position */
+    transform: translate(0, -50%);                         /* Toggle.circle position (toggle-off) */
+    transition: all 0.2s ease;                             /* Toggle on-off behavior */
+  }
+  div.toggleswitch label.toggle:before {
+    width: 30px;                                           /* Toggle.bar size (I) */
+    height: 12px;                                          /* Toggle.bar size */
+    background-color: #9e9e9e;                             /* Toggle.bar color (toggle-off) */
+    border-radius: 8px;                                    /* Toggle.bar side roundness */
+  }
+  div.toggleswitch label.toggle:after {
+    width: 16px;                                           /* Toggle.circle size (II) */
+    height: 16px;                                          /* Toggle.circle size (II) */
+    background-color: #fafafa;                             /* Toggle.circle color (toggle-off) */
+    border-radius: 100%;                                   /* Toggle.circle roundness */
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.1),         /* Toggle shadow */
+        0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.080);
+  }
+  div.toggleswitch input.switch:checked+label.toggle:before {
+    background-color: #596F92;                             /* Toggle.bar color (toggle-on) */
+  }
+  div.toggleswitch input.switch:checked+label.toggle:after {
+    background-color: #8AB4F8;                             /* Toggle.circle color (toggle-on) */
+    transform: translate(88%, -50%);                      /* Toggle.circle position (toggle-on) */
+  }
+}
+
+
+@media (prefers-color-scheme: light) {
+  body {
+    width: 400px;
+    padding: 0;
+    margin: 0 auto;
+    background: #fbfbfb;
+  }
+  ::-webkit-scrollbar {
+    /* display: none; */
+    background: #b1b1b1;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #4b4b4b;
+    border-radius: 20px;
+  }
+
+  /* Other */
+  hr.menu-hr {
+    height: 0;
+    border: 0;
+    border-top: 1px solid #bbbbbb;
+    padding: 0;
+    margin: 4px 2px 4px 2px;
+  }
+
+  /* Overlay Card */
+  div.overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  div.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  div.overlay div.overlay-card {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    position: fixed;
+    top: 50%;               /* Upper left position */
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    margin-left: -200px;    /* Half of width */
+    margin-top: -100px;     /* Half of height */
+    padding: 10px;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    background: #ffffff;
+  }
+  div.overlay div.overlay-card.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: auto;
+  }
+  div.overlay div.overlay-card div.overlay-card-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-title {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-name {
+    display: flex;
+    justify-content: right;
+    width: 40%;
+    padding-right: 10px;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-name span {
+    font-size: 16px;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-value {
+    display: flex;
+    justify-content: left;
+    width: 60%;
+  }
+  div.overlay div.overlay-card div.overlay-card-row div.overlay-card-value span {
+    font-size: 12px;
+  }
+  div.overlay div.overlay-card-close {
+    position: absolute;
+    display: block;
+    content: "";
+    top: -54px;    /* = height + margin-top + margin-bottom */
+    left: 100%;
+    width: 34px;
+    height: 34px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #272727da;
+  }
+  div.overlay:hover div.overlay-card:not(:hover) div.overlay-card-close {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-card-close:hover {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 3px;
+    left: 5px;
+    margin: 0px;
+    width: 24px;
+    height: 24px;
+    user-select: none;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::before, 
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: #b8b8b8;
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::before {
+    transform: translate(-50%, -40%) rotate(45deg);
+  }
+  div.overlay div.overlay-card-close span.overlay-card-close-symbol::after {
+    transform: translate(-50%, -40%) rotate(135deg);
+  }
+  div.overlay div.overlay-minicard {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    background: #ffffff;
+  }
+  div.overlay div.overlay-minicard.active {
+    opacity: 1;
+    visibility: visible;
+    cursor: auto;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-title {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-name {
+    display: flex;
+    justify-content: right;
+    width: 40%;
+    padding-right: 10px;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-name span {
+    font-size: 14px;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-value {
+    display: flex;
+    justify-content: left;
+    width: 60%;
+  }
+  div.overlay div.overlay-minicard div.overlay-minicard-row div.overlay-minicard-value span {
+    font-size: 12px;
+  }
+  div.overlay div.overlay-minicard-close {
+    position: absolute;
+    display: block;
+    content: "";
+    position: absolute;
+    top: -28px;    /* = height + margin-top + margin-bottom */
+    left: 100%;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #272727da;
+  }
+  div.overlay:hover div.overlay-minicard:not(:hover) div.overlay-minicard-close {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-minicard-close:hover {
+    background-color: #1b5153da;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 2px;
+    left: 2px;
+    margin: 0px;
+    width: 20px;
+    height: 20px;
+    user-select: none;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::before, 
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 16px;
+    background-color: #b8b8b8;
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  div.overlay div.overlay-minicard-close span.overlay-minicard-close-symbol::after {
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
+
+  /* Header */
+  div.header-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 15px 0px 10px;
+  }
+  div.header-container .right-aligned{
+    margin-left: auto;
+  }
+  div.header-container div.header-logo {
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+    user-select: none;
+    border: 0 none;
+  }
+  div.header-container div.header-title {
+    position: relative;
+    display: block;
+    user-select: none;
+    font-size: 16px;
+    font-weight: bold;
+    color:#000000;
+  }
+  div.header-container div.header-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Icon Button */
+  div.header-icon {
+    position: relative;
+    display: block;
+    content: "";
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  div.header-icon:hover {
+    background-color:#a3e7de;
+  }
+  div.header-icon button.icon-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 28px;
+    width: 28px;
+    border: 0 none;
+    cursor: pointer;
+    user-select: none;
+    background-size: 18px 18px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  div.header-icon button.icon-hamburger {
+    background-image: url('./icons/hamburger_lite.png');
+  }
+
+  /* Popup Menu under Icon Button */
+  div.header-icon-popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 8px 0px 8px 0px;
+    top: 100%;
+    right: 100%;
+    transform: translate(32px, -16px);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    background: #fbfbfb;
+    border: 1px solid #DADCE0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.32);
+    transition: all 100ms ease-in-out;
+  }
+  div.header-icon-popup.active{
+    transform: translate(32px, -8px);
+    opacity: 1;
+    visibility: visible;
+  }
+  div.header-icon-popup div.header-icon-popup-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    font-size: 12px;
+    color:#000000;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 26px;                                     /* Overlay height */
+    transition: background-color 100ms ease-in-out 0ms;    /* Overlay hovering behavior */
+  }
+  div.header-icon-popup div.header-icon-popup-item:hover {
+    background-color: #e0e0e0;                           /* Overlay color */
+  }
+  div.header-icon-popup div.header-icon-popup-item div.header-icon-popup-inlineicon {
+    height: 16px;
+    width: 16px;
+    border: 0 none;
+    user-select: none;
+    background-size: 14px 14px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  div.header-icon-popup div.header-icon-popup-item div.icon-open {
+    background-image: url('./icons/open_lite.png');
+  }
+
+  /* Option */
+  div.option-container {
+    position: relative;
+    padding: 0px 0px 3px 0px;
+  }
+  div.option {
+    display: block;
+    visibility: visible;
+  }
+  div.option div.option-title {
+    color:#000000;
+    font-size: 14px;
+    padding: 0px 10px 2px 10px;
+    user-select: none;
+  }
+  div.option div.option-item-container {
+    position: relative;
+  }
+  div.option div.option-item-container:hover {
+    background-color: #e0e0e0;
+  }
+  div.option div.option-item-container button.item-switch {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 0px;
+    cursor: pointer;
+    border: 0px solid;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+  div.option-item {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2px 10px 2px 10px;
+  }
+  div.option-item div.item-title{
+    user-select: none;
+    font-size: 12px;
+    color:#000000;
+    padding: 1px 10px 1px 10px;
+  }
+  div.option-item .right-aligned {
+    margin-left: auto;
+  }
+  div.option-item .unclickable {
+    pointer-events: none;
+  }
+
+  /* Toggle Switch Option */
+  div.toggleswitch {
+    position: relative;                                    /* MUST */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    width: 30px;                                           /* Toggle+Lable overall width (I) */
+    height: 16px;                                          /* Toggle+Lable overall height (II) */
+    margin: 2px 8px 2px 8px;
+  }
+  div.toggleswitch input.switch {
+    display: none;
+  }
+  div.toggleswitch label.toggle {
+    position: relative;                                    /* MUST */
+    content: "";
+    cursor: pointer;
+    user-select: none;
+    width: 30px;                                           /* Toggle+Lable overall width (I) */
+    height: 16px;                                          /* Toggle+Lable overall height (II) */
+  }
+  div.toggleswitch label.toggle:before,
+  div.toggleswitch label.toggle:after {
+    position: absolute;                                    /* MUST */
+    content: "";                                           /* MUST (empty) */
+    top: 50%;                                              /* Toggle overall position */
+    transform: translate(0, -50%);                         /* Toggle.circle position (toggle-off) */
+    transition: all 0.2s ease;                             /* Toggle on-off behavior */
+  }
+  div.toggleswitch label.toggle:before {
+    width: 30px;                                           /* Toggle.bar size (I) */
+    height: 12px;                                          /* Toggle.bar size */
+    background-color: #bdc1c6;                             /* Toggle.bar color (toggle-off) */
+    border-radius: 8px;                                    /* Toggle.bar side roundness */
+  }
+  div.toggleswitch label.toggle:after {
+    width: 16px;                                           /* Toggle.circle size (II) */
+    height: 16px;                                          /* Toggle.circle size (II) */
+    background-color: #ffffff;                             /* Toggle.circle color (toggle-off) */
+    border-radius: 100%;                                   /* Toggle.circle roundness */
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.1),         /* Toggle shadow */
+        0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.080);
+  }
+  div.toggleswitch input.switch:checked+label.toggle:before {
+    background-color: #8cb9f3;                             /* Toggle.bar color (toggle-on) */
+  }
+  div.toggleswitch input.switch:checked+label.toggle:after {
+    background-color: #1a73e8;                             /* Toggle.circle color (toggle-on) */
+    transform: translate(88%, -50%);                      /* Toggle.circle position (toggle-on) */
+  }}
