@@ -31,7 +31,7 @@
   "background": {
     "service_worker": "service-worker.js"
   },
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage"],
   "host_permissions": [],
   "manifest_version": 3
 }
