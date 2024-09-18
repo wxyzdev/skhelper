@@ -54,16 +54,31 @@ window.addEventListener('load', async (event) => {
     // Skip vote button if auto-feedback is enabled.
     const autoFeedback = await clstorage.readConfig('CONFIG_AUTOMATION_ENABLE_AUTOFEEDBACK');
     const feedbackLabel = await clstorage.readConfig('CONFIG_AUTOMATION_FEEDBACK_DISLIKE')? '嫌い' : '好き';
+
+    if(document.querySelectorAll('input.auth-r')){
+        document.querySelectorAll('input.auth-r').forEach(async (feedbackButton) => {
+            let voteButton = feedbackButton.parentElement.querySelector('button.vote-submit');
+            if(voteButton.textContent.includes(feedbackLabel)){
+                if(autoFeedback){
+                    logger().info('Auto-feedback: ', voteButton);
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    voteButton.click();
+                };
+            }
+        });
+    };
+
     let pageObserver = new MutationObserver((mutations) => {
-        mutations.forEach(async (mutation) => {
+        mutations.forEach(async (mutation) => {        
             if(mutation.target.classList.contains('auth-r') 
                 && mutation.target.parentElement.querySelector('button.vote-submit').textContent.includes(feedbackLabel)){
                 let voteButton = mutation.target.parentElement.querySelector('button.vote-submit');
-                logger().info('Test: ', voteButton);
-                logger().info('autoFeedback: ', autoFeedback);
-                logger().info('readConfig(): ', await clstorage.readConfig('CONFIG_AUTOMATION_ENABLE_AUTOFEEDBACK'));
+                logger().debug('voteButton: ', voteButton);
+                logger().debug('autoFeedback: ', autoFeedback);
+                logger().debug('readConfig(): ', await clstorage.readConfig('CONFIG_AUTOMATION_ENABLE_AUTOFEEDBACK'));
                 if(autoFeedback){
                     logger().info('Auto-feedback: ', voteButton);
+                    await new Promise(resolve => setTimeout(resolve, 1000));
                     voteButton.click();
                 };
             };
