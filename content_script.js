@@ -140,18 +140,18 @@ window.addEventListener('load', async (event) => {
 
     // Tuning and Automation parameters.
     const commentsPerPage = 20;
-    const baseIntervalSec = 5;
+    const baseIntervalSec = 2;
     const hasRandomInterval = await clstorage.readConfig('CONFIG_TUNING_RANDOM_INTERVAL');
-    const minRandomIntervalSec = 2;
-    const maxRandomIntervalSec = 6;
+    const minRandomIntervalSec = 1;
+    const maxRandomIntervalSec = 3;
     const hasRandomDelay = await clstorage.readConfig('CONFIG_TUNING_INCREASE_RANDOM');
-    const maxRandomDelaySec = 10;
+    const maxRandomDelaySec = 5;
     let intervalSec = baseIntervalSec;
     let avgIntervalSec = baseIntervalSec;
     const isAutoTransition = await clstorage.readConfig('CONFIG_AUTOMATION_GOTO_LAST');
 
     // Scraping and save comments.
-    if(document.querySelector('li.next-page')){
+    if(document.querySelector('li.nextPage')){
         // Add buttons to handle a user gesture for the file picker.
         let labels = ['LABEL_SAVE_1000','LABEL_SAVE_10000','LABEL_SAVE_1DAY','LABEL_SAVE_7DAY','LABEL_SAVE_ALL'];
         let upperPagination = document.querySelector('ul.pagination');
@@ -180,7 +180,6 @@ window.addEventListener('load', async (event) => {
             });
         });
 
-
         // Trigger scraping by the click event on #SAVE-10+".
         document.querySelectorAll('ul.pagination li:has(a[id^="SAVE-10"]):has(a[id$="0"])').forEach((saveButton) => {
             saveButton.addEventListener('click', async (event) => {
@@ -206,7 +205,7 @@ window.addEventListener('load', async (event) => {
                             avgIntervalSec = (maxRandomIntervalSec+minRandomIntervalSec)/2;
                         };
                         if(hasRandomDelay){
-                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-10] sec
+                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-5] sec
                             avgIntervalSec = avgIntervalSec + (maxRandomDelaySec/2);
                         };
                         intervalSec = Math.floor(intervalSec * 100) / 100; // x.xxxxx... -> x.xx
@@ -237,9 +236,9 @@ window.addEventListener('load', async (event) => {
                             // Ignore a new vote process 
 
                             let hasNext = false;
-                            if(doc.querySelector('li.next-page a')){
+                            if(doc.querySelector('li.nextPage a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.next-page a').href;
+                                url = doc.querySelector('li.nextPage a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -314,7 +313,7 @@ window.addEventListener('load', async (event) => {
                             avgIntervalSec = (maxRandomIntervalSec+minRandomIntervalSec)/2;
                         };
                         if(hasRandomDelay){
-                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-10] sec
+                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-5] sec
                             avgIntervalSec = avgIntervalSec + (maxRandomDelaySec/2);
                         };
                         intervalSec = Math.floor(intervalSec * 100) / 100; // x.xxxxx... -> x.xx
@@ -357,9 +356,9 @@ window.addEventListener('load', async (event) => {
                             // Ignore a new vote process 
     
                             let hasNext = false;
-                            if(doc.querySelector('li.next-page a')){
+                            if(doc.querySelector('li.nextPage a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.next-page a').href;
+                                url = doc.querySelector('li.nextPage a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -431,7 +430,7 @@ window.addEventListener('load', async (event) => {
                             avgIntervalSec = (maxRandomIntervalSec+minRandomIntervalSec)/2;
                         };
                         if(hasRandomDelay){
-                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-10] sec
+                            intervalSec = intervalSec + (Math.random()*maxRandomDelaySec); // +[0-5] sec
                             avgIntervalSec = avgIntervalSec + (maxRandomDelaySec/2);
                         };
                         intervalSec = Math.floor(intervalSec * 100) / 100; // x.xxxxx... -> x.xx
@@ -473,9 +472,9 @@ window.addEventListener('load', async (event) => {
                             };
     
                             let hasNext = false;
-                            if(comments.length > 0 && doc.querySelector('li.next-page a')){
+                            if(comments.length > 0 && doc.querySelector('li.nextPage a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.next-page a').href;
+                                url = doc.querySelector('li.nextPage a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -519,10 +518,10 @@ window.addEventListener('load', async (event) => {
 
 
     // Pre-load next comments.
-    if(document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.next-page))) li.next-page')){
+    if(document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.nextPage))) li.nextPage')){
         // Add buttons to handle a user gesture for the file picker.
         let labels = ['LABEL_PRELOAD_NEXT20','LABEL_PRELOAD_NEXT100'];
-        let lowerPagination = document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.next-page)))');
+        let lowerPagination = document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.nextPage)))');
         await new Promise(async (resolve) => {
             for(let idx=0; idx<labels.length; idx++){
                 if(await clstorage.readConfig('CONFIG_UI_ADD_' + labels[idx].replace(/LABEL_PRELOAD_/, ''))){
@@ -560,7 +559,7 @@ window.addEventListener('load', async (event) => {
 
 
                 let depth = event.target.id.replace(/^PRELOAD-/, '') / commentsPerPage;
-                let url = lowerPagination.querySelector('li.next-page a').href;
+                let url = lowerPagination.querySelector('li.nextPage a').href;
                 let remain = 0;
                 let comments;
 
@@ -604,8 +603,8 @@ window.addEventListener('load', async (event) => {
                         // Ignore a new vote process 
 
                         let hasNext = false;
-                        if(comments.length > 0 && doc.querySelector('li.next-page a')){
-                            url = doc.querySelector('li.next-page a').href;
+                        if(comments.length > 0 && doc.querySelector('li.nextPage a')){
+                            url = doc.querySelector('li.nextPage a').href;
                             remain = Number(url.replace(/^.*\?nxc=/, ''));
                             hasNext = true;
                         };
@@ -639,13 +638,13 @@ window.addEventListener('load', async (event) => {
                 });
 
                 await new Promise(resolve => {
-                    lowerPagination.querySelector('li.next-page a').href = url;
-                    lowerPagination.querySelector('li.next-page a').setAttribute('data-locale', 'LABEL_NEXT_PRELOAD');
+                    lowerPagination.querySelector('li.nextPage a').href = url;
+                    lowerPagination.querySelector('li.nextPage a').setAttribute('data-locale', 'LABEL_NEXT_PRELOAD');
                     resolve();
                 }).then(() => {
                     // Replace textContent if it has [data-locale="key"] tag:
                     logger().trace('All of textContents were replaced.');
-                    lowerPagination.querySelectorAll('li.next-page a[data-locale]').forEach(element => {
+                    lowerPagination.querySelectorAll('li.nextPage a[data-locale]').forEach(element => {
                         element.textContent = chrome.i18n.getMessage(element.dataset.locale)
                     });
                 });

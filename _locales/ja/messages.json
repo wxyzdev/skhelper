@@ -6,7 +6,7 @@
       "message": "好き嫌い.comでの多数のコメントの取得を効率化しローカルテキストファイルに保存します。"
    },
    "APP_VERSION": {
-      "message": "1.0.5"
+      "message": "1.0.6"
    },
    "APP_COPYRIGHT": {
       "message": "wxyz"
@@ -93,10 +93,10 @@
       "message": "最古の収集済みページに自動遷移する"
    },
    "TITLE_TUNING_RANDOM_INTERVAL": {
-      "message": "ベース収集間隔(5秒)をランダムにする (2-6秒)"
+      "message": "ベース収集間隔(2秒)をランダムにする (1-3秒)"
    },
    "TITLE_TUNING_INCREASE_RANDOM": {
-      "message": "収集間隔を追加でランダムに増やす(<10秒)"
+      "message": "収集間隔を追加でランダムに増やす(<5秒)"
    },
    "TITLE_LOGGING_ENABLE_LOGGING": {
       "message": "ログを有効にする"
