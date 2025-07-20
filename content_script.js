@@ -151,7 +151,10 @@ window.addEventListener('load', async (event) => {
     const isAutoTransition = await clstorage.readConfig('CONFIG_AUTOMATION_GOTO_LAST');
 
     // Scraping and save comments.
-    if(document.querySelector('li.nextPage')){
+    let nextItemClassArray = document.querySelector('ul.pagination li:last-child').className.split(' ');
+    let nextItemClass = nextItemClassArray[nextItemClassArray.length - 1];
+
+    if(document.querySelector('li.' + nextItemClass)){
         // Add buttons to handle a user gesture for the file picker.
         let labels = ['LABEL_SAVE_1000','LABEL_SAVE_10000','LABEL_SAVE_1DAY','LABEL_SAVE_7DAY','LABEL_SAVE_ALL'];
         let upperPagination = document.querySelector('ul.pagination');
@@ -236,9 +239,9 @@ window.addEventListener('load', async (event) => {
                             // Ignore a new vote process 
 
                             let hasNext = false;
-                            if(doc.querySelector('li.nextPage a')){
+                            if(doc.querySelector('li.' + nextItemClass + ' a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.nextPage a').href;
+                                url = doc.querySelector('li.' + nextItemClass + ' a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -356,9 +359,9 @@ window.addEventListener('load', async (event) => {
                             // Ignore a new vote process 
     
                             let hasNext = false;
-                            if(doc.querySelector('li.nextPage a')){
+                            if(doc.querySelector('li.' + nextItemClass + 'a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.nextPage a').href;
+                                url = doc.querySelector('li.' + nextItemClass + ' a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -472,9 +475,9 @@ window.addEventListener('load', async (event) => {
                             };
     
                             let hasNext = false;
-                            if(comments.length > 0 && doc.querySelector('li.nextPage a')){
+                            if(comments.length > 0 && doc.querySelector('li.' + nextItemClass + ' a')){
                                 oldUrl = url;
-                                url = doc.querySelector('li.nextPage a').href;
+                                url = doc.querySelector('li.' + nextItemClass + ' a').href;
                                 remain = Number(url.replace(/^.*\?nxc=/, ''));
                                 hasNext = true;
                             };
@@ -518,10 +521,10 @@ window.addEventListener('load', async (event) => {
 
 
     // Pre-load next comments.
-    if(document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.nextPage))) li.nextPage')){
+    if(document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.' + nextItemClass + '))) li.' + nextItemClass + '')){
         // Add buttons to handle a user gesture for the file picker.
         let labels = ['LABEL_PRELOAD_NEXT20','LABEL_PRELOAD_NEXT100'];
-        let lowerPagination = document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.nextPage)))');
+        let lowerPagination = document.querySelector('ul.pagination:not(:has(li.page-item:not(.first-page):not(.prev-page):not(.' + nextItemClass + ')))');
         await new Promise(async (resolve) => {
             for(let idx=0; idx<labels.length; idx++){
                 if(await clstorage.readConfig('CONFIG_UI_ADD_' + labels[idx].replace(/LABEL_PRELOAD_/, ''))){
@@ -559,7 +562,7 @@ window.addEventListener('load', async (event) => {
 
 
                 let depth = event.target.id.replace(/^PRELOAD-/, '') / commentsPerPage;
-                let url = lowerPagination.querySelector('li.nextPage a').href;
+                let url = lowerPagination.querySelector('li.' + nextItemClass + ' a').href;
                 let remain = 0;
                 let comments;
 
@@ -603,8 +606,8 @@ window.addEventListener('load', async (event) => {
                         // Ignore a new vote process 
 
                         let hasNext = false;
-                        if(comments.length > 0 && doc.querySelector('li.nextPage a')){
-                            url = doc.querySelector('li.nextPage a').href;
+                        if(comments.length > 0 && doc.querySelector('li.' + nextItemClass + ' a')){
+                            url = doc.querySelector('li.' + nextItemClass + ' a').href;
                             remain = Number(url.replace(/^.*\?nxc=/, ''));
                             hasNext = true;
                         };
@@ -638,13 +641,13 @@ window.addEventListener('load', async (event) => {
                 });
 
                 await new Promise(resolve => {
-                    lowerPagination.querySelector('li.nextPage a').href = url;
-                    lowerPagination.querySelector('li.nextPage a').setAttribute('data-locale', 'LABEL_NEXT_PRELOAD');
+                    lowerPagination.querySelector('li.' + nextItemClass + ' a').href = url;
+                    lowerPagination.querySelector('li.' + nextItemClass + ' a').setAttribute('data-locale', 'LABEL_NEXT_PRELOAD');
                     resolve();
                 }).then(() => {
                     // Replace textContent if it has [data-locale="key"] tag:
                     logger().trace('All of textContents were replaced.');
-                    lowerPagination.querySelectorAll('li.nextPage a[data-locale]').forEach(element => {
+                    lowerPagination.querySelectorAll('li.' + nextItemClass + ' a[data-locale]').forEach(element => {
                         element.textContent = chrome.i18n.getMessage(element.dataset.locale)
                     });
                 });
