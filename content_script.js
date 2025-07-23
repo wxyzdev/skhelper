@@ -151,7 +151,8 @@ window.addEventListener('load', async (event) => {
     const isAutoTransition = await clstorage.readConfig('CONFIG_AUTOMATION_GOTO_LAST');
 
     // Scraping and save comments.
-    let nextItemClassArray = document.querySelector('ul.pagination li:not([style="display:none"]) a[rel="next"]').parentElement.className.split(' ');
+
+    let nextItemClassArray = document.querySelector('ul.pagination li:not([style*="display:none"]) a[rel*="next"]').parentElement.className.split(' ');
     let nextItemClass = nextItemClassArray[nextItemClassArray.length - 1];
 
     if(document.querySelector('li.' + nextItemClass)){
